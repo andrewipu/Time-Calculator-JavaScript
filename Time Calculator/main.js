@@ -10,9 +10,12 @@
 import { addTime } from "./time_calculator";
 
 console.log(addTime("3:30 PM", "2:12")); //should return 5:42 PM
+//addTime("3:30 PM", "2:12");
 
 
 //export above functions
+/*
 module.exports = {
     //add
 };
+*/
