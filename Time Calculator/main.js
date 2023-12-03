@@ -1,14 +1,11 @@
-//? 1. write tests first?
+//? 1. 
 //? 2. 
-'use strict';
+import { addTime } from "./time_calculator";
 
-function add (a, b) {
-    return a;
-}
+console.log(addTime("11:59 PM", "24:05", "Wednesday"));
+
 
 //export above functions
 module.exports = {
-    add
+    //add
 };
-
-console.log(add(2, 3));
