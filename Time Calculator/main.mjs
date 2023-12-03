@@ -7,7 +7,7 @@
 //? 6. If the result is several days later then the output should indicate "n days later"
 //? 7. Day of the week should appear after the time and before the number of days later.
 
-import { addTime } from "./time_calculator";
+import {addTime} from "./time_calculator.mjs"
 
 console.log(addTime("3:30 PM", "2:12")); //should return 5:42 PM
 //addTime("3:30 PM", "2:12");
