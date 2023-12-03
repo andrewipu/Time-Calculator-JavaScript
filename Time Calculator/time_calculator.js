@@ -16,5 +16,5 @@ export function addTime(start, duration){
 
     //extract duration_minutes
     let durMin = duration.match(/\d+\d+/)[0];
-    return durMin;
+    
 }
