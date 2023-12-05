@@ -9,7 +9,7 @@
 
 import {addTime} from "./time_calculator.mjs"
 
-console.log(addTime("3:30 PM", "2:12")); //should return 5:42 PM
+console.log(addTime("11:55 AM", "3:12")); //should return 5:42 PM
 //addTime("3:30 PM", "2:12");
 
 
