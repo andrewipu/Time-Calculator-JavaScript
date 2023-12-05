@@ -29,8 +29,6 @@ export function addTime(start, duration){
     if (AM_PM == 'PM') {
         newHour += 12; //Add 12 to convert to 24hr clock system.
     }
-    
-    //return newHour; //returns 17
 
     //check if minutes exceed 60 and add 1 to newHour if true
     if (newMinute >= 60) {
@@ -39,7 +37,6 @@ export function addTime(start, duration){
     }
 
     //format minutes
-    //!NEED TO TEST
     if (newMinute < 10) {
         newMinute = "0" + String(newMinute);
     } else {
@@ -47,16 +44,13 @@ export function addTime(start, duration){
     };
 
     //assign appropriate perido (AM or PM)
-
-    if(newHour >= 0 && newHour < 12)
-        if(newHour >= 24) {
-            AM_PM = "AM";
-        } else if (newHour >=12 && newHour <= 23) {
+    if(newHour >= 12) {
             AM_PM = "PM";
+        } else {
+            AM_PM = "AM";
         };
 
     //convert back to 12hrs if in 24hr system
-    
     if (newHour > 12) {
         newHour -= 12;
     } else {
