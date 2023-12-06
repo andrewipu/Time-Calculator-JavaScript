@@ -16,9 +16,8 @@ export function addTime(start, duration){
     //extract duration_hours
     let durHour = duration.match(/\d\S*(?=:)/)[0];
     
-
     //extract duration_minutes
-    let durMin = duration.match(/\d+\d+/)[0];
+    let durMin = duration.match(/\d{2}$/)[0];
 
     let dayCount = 0;
 
@@ -29,6 +28,14 @@ export function addTime(start, duration){
     if (AM_PM == 'PM') {
         newHour += 12; //Add 12 to convert to 24hr clock system.
     }
+
+    let dividend = newHour;
+    let divisor = 24;
+    
+    let days = Math.floor(dividend / divisor); //return day.
+    newHour = dividend % divisor; //return for next day.
+
+    dayCount = days;
 
     //check if minutes exceed 60 and add 1 to newHour if true
     if (newMinute >= 60) {
@@ -59,20 +66,4 @@ export function addTime(start, duration){
 
     let newTime = newHour + ":" + newMinute + " " + AM_PM;
     return newTime;
-
-    /*
-        ?let newHour = startHour + Number(durHour);
-        //derive number of days + hours from newHour
-        let dividend = newHour;
-        let divisor = 24;
-
-        let days = Math.floor(dividend / divisor); //return day.
-        newHour = dividend % divisor; //return new hour
-        
-        dayCount = days; //! Need to TEST
-
-        //new minutes, increment new_hour, increment day_count
-        ?let newMinute = Number(startMin) + Number(durMin); 
-    */
-
 };
