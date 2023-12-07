@@ -25,22 +25,33 @@ export function addTime(start, duration){
     let newMinute = Number(startMin) + Number(durMin);
     let newHour = Number(startHour) + Number(durHour);
 
+    //check if minutes exceed 60 and add 1 to newHour if true
+    if (newMinute >= 60) {
+        newHour += 1;
+        newMinute -= 60;
+    }
+
     if (AM_PM == 'PM') {
         newHour += 12; //Add 12 to convert to 24hr clock system.
     }
 
+    //next five lines implement the (next day/n days later) feature
     let dividend = newHour;
     let divisor = 24;
     
     let days = Math.floor(dividend / divisor); //return day.
     newHour = dividend % divisor; //return for next day.
-
     dayCount = days;
 
-    //check if minutes exceed 60 and add 1 to newHour if true
-    if (newMinute >= 60) {
-        newHour += 1;
-        newMinute -= 60;
+    //error handling if newHour is === to 0
+    newHour == 0 ? newHour = 24 : newHour;
+
+    let daysElapsed = "";
+
+    if (dayCount > 1) {
+        daysElapsed = " (" + String(dayCount) + " " + "days later" + ")"
+    } else if (dayCount === 1) {
+        daysElapsed = " (" + "next day" + ")";
     }
 
     //format minutes
@@ -50,12 +61,14 @@ export function addTime(start, duration){
         newMinute = String(newMinute);
     };
 
-    //assign appropriate perido (AM or PM)
-    if(newHour >= 12) {
-            AM_PM = "PM";
-        } else {
-            AM_PM = "AM";
-        };
+    //assign appropriate period (AM or PM)
+    if (newHour >= 0 && newHour < 12) {
+        AM_PM = "AM";
+    }else if(newHour >= 12 && newHour <= 23) {
+        AM_PM = "PM";
+    }else if (newHour >= 24) {
+        AM_PM = "AM";
+    };
 
     //convert back to 12hrs if in 24hr system
     if (newHour > 12) {
@@ -64,6 +77,6 @@ export function addTime(start, duration){
         newHour = newHour;
     };
 
-    let newTime = newHour + ":" + newMinute + " " + AM_PM;
+    let newTime = newHour + ":" + newMinute + " " + AM_PM + daysElapsed;
     return newTime;
 };
