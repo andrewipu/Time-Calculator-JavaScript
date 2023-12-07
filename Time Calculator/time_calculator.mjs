@@ -2,7 +2,7 @@
 
 let weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-export function addTime(start, duration){
+export function addTime(start, duration, day=null){
 
     //extract the start hour
     let startHour = start.match(/(\d\S*):/)[1];
@@ -43,6 +43,19 @@ export function addTime(start, duration){
     newHour = dividend % divisor; //return for next day.
     dayCount = days;
 
+
+     //reference day input by user on array
+    let startIndex = weekDays.indexOf(day);
+
+     //Derive new index, return new day
+    let finalIndex = (startIndex + dayCount) % weekDays.length;
+    let newDay = weekDays[finalIndex];
+    
+    //error handling in case undefined
+    if (newDay == undefined) {
+    newDay = "";
+    }
+
     //error handling if newHour is === to 0
     newHour == 0 ? newHour = 24 : newHour;
 
@@ -77,6 +90,7 @@ export function addTime(start, duration){
         newHour = newHour;
     };
 
-    let newTime = newHour + ":" + newMinute + " " + AM_PM + daysElapsed;
+    //let newTime = newHour + ":" + newMinute + " " + AM_PM + daysElapsed;
+    let newTime = newHour + ":" + newMinute + " " + AM_PM + " " + newDay + daysElapsed;
     return newTime;
 };
