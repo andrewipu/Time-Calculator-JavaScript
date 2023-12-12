@@ -5,8 +5,11 @@
   "main": "main.mjs",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "Error: no test specified"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
 }
